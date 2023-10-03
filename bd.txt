@@ -1,0 +1,112 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Tempo de geração: 25-Ago-2023 às 21:24
+-- Versão do servidor: 10.4.22-MariaDB
+-- versão do PHP: 8.0.15
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Banco de dados: `nodemodulo3`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `animais`
+--
+
+CREATE TABLE `animais` (
+  `animal_id` bigint(20) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `tipo` varchar(30) NOT NULL,
+  `proprietario_id` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `animais`
+--
+
+INSERT INTO `animais` (`animal_id`, `nome`, `tipo`, `proprietario_id`) VALUES
+(1, 'Billy', 'Cachorro', 1),
+(2, 'Nala', 'Cachorro', 2),
+(3, 'Mimi', 'Gato', 2),
+(4, 'Dory', 'Cachorro', 3),
+(5, 'Lulu', 'Cachorro', 4),
+(6, 'Bob', 'Cachorro', 5),
+(7, 'Milu', 'Cachorro', 5),
+(8, 'Emmy', 'Gato', 5),
+(9, 'Amora', 'Cachorro', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `proprietarios`
+--
+
+CREATE TABLE `proprietarios` (
+  `proprietario_id` bigint(20) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `telefone` varchar(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `proprietarios`
+--
+
+INSERT INTO `proprietarios` (`proprietario_id`, `nome`, `telefone`) VALUES
+(1, 'Alda Valentim', '(39) 9856'),
+(2, 'Nicolas Avelar', '(28) 9743'),
+(3, 'Emilly Baptista', '(31) 9954'),
+(4, 'Beatriz Bonilha', '(35) 9805'),
+(5, 'Nataniel Faleiro', '(33) 9959'),
+(6, 'Richard Santos', '(27) 9959');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `animais`
+--
+ALTER TABLE `animais`
+  ADD PRIMARY KEY (`animal_id`),
+  ADD KEY `fk_proprietarios` (`proprietario_id`);
+
+--
+-- Índices para tabela `proprietarios`
+--
+ALTER TABLE `proprietarios`
+  ADD PRIMARY KEY (`proprietario_id`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `animais`
+--
+ALTER TABLE `animais`
+  MODIFY `animal_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de tabela `proprietarios`
+--
+ALTER TABLE `proprietarios`
+  MODIFY `proprietario_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `animais`
+--
+ALTER TABLE `animais`
+  ADD CONSTRAINT `fk_proprietarios` FOREIGN KEY (`proprietario_id`) REFERENCES `proprietarios` (`proprietario_id`);
+COMMIT;
