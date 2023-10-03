@@ -5,6 +5,7 @@ async function createProprietario(req, res, next){
             throw new Error("Nome e telefone são obrigatórios")
         }
         //service
+        console.log('proprietário')
     } catch (error) {
         next(err)
     }
